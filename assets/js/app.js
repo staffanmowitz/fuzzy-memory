@@ -20,8 +20,6 @@ const cards = [
   'img-8'
 ];
 
-const newGame = document.querySelector('button');
-
 // Shuffle the content of the cards-array (Fisher-Yates shuffle)
 function shuffleCards (array) {
   let i = 0;
@@ -39,25 +37,27 @@ function dealCards () {
   shuffleCards(cards);
   document.querySelector('div.cards').innerHTML = '';
   cards.forEach(function (i) {
-    let card = document.createElement('div');
-    card.className = 'card';
-    card.setAttribute('data-image', i + '.png');
-    card.innerHTML = '<img src="assets/img/back.png">';
-    document.querySelector('div.cards').appendChild(card);
+    let cardDiv = document.createElement('div');
+    cardDiv.className = 'card';
+    cardDiv.setAttribute('data-image', i + '.png');
+    cardDiv.innerHTML = '<img src="assets/img/back.png">';
+    document.querySelector('div.cards').appendChild(cardDiv);
   });
 }
 
 dealCards();
 
-newGame.addEventListener('click', function (event) {
-  dealCards();
-});
+const newGame = document.querySelector('button');
+newGame.addEventListener('click', dealCards, false);
 
-const card = document.querySelectorAll('div.card');
+function flipCard () {
+  let cardImg = this.getAttribute('data-image');
+  this.innerHTML = '<img src="assets/img/' + cardImg + '">';
+}
+
+const card = document.querySelectorAll('.card');
+console.log(card);
 
 for (let i = 0; i < card.length; i++) {
-  card[i].addEventListener('click', function () {
-    let cardImg = card[i].getAttribute('data-image');
-    this.innerHTML = '<img src="assets/img/' + cardImg + '">';
-  });
+  card[i].addEventListener('click', flipCard, false);
 }
