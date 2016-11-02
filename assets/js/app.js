@@ -43,7 +43,7 @@ function dealCards() {
     let card = document.createElement('div');
     card.className = 'card';
     card.setAttribute('data-image', i + '.png');
-    card.innerHTML = i;
+    card.innerHTML = '<img src="assets/img/back.png">';
     document.querySelector('div.cards').appendChild(card);
   });
 }
