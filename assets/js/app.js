@@ -26,8 +26,7 @@ const newGame = document.querySelector('button');
 function shuffleCards (array) {
   let i = 0;
   let j = 0;
-  let temp = null
-
+  let temp = null;
   for (i = array.length - 1; i > 0; i -= 1) {
     j = Math.floor(Math.random() * (i + 1));
     temp = array[i];
@@ -36,10 +35,10 @@ function shuffleCards (array) {
   }
 }
 
-function dealCards() {
+function dealCards () {
   shuffleCards(cards);
-  document.querySelector('div.cards').innerHTML = "";
-  cards.forEach(function(i) {
+  document.querySelector('div.cards').innerHTML = '';
+  cards.forEach(function (i) {
     let card = document.createElement('div');
     card.className = 'card';
     card.setAttribute('data-image', i + '.png');
@@ -50,17 +49,15 @@ function dealCards() {
 
 dealCards();
 
-newGame.addEventListener('click', function(event){
+newGame.addEventListener('click', function (event) {
   dealCards();
 });
 
 const card = document.querySelectorAll('div.card');
 
 for (let i = 0; i < card.length; i++) {
-  if (document.addEventListener) {
-    card[i].addEventListener('click', function() {
-    let img = card[i].getAttribute('data-image');
-    this.innerHTML = '<img src="assets/img/' + img + '">';
-    });
-  }
-};
+  card[i].addEventListener('click', function () {
+    let cardImg = card[i].getAttribute('data-image');
+    this.innerHTML = '<img src="assets/img/' + cardImg + '">';
+  });
+}
