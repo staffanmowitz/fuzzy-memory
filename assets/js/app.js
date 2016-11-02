@@ -53,3 +53,14 @@ dealCards();
 newGame.addEventListener('click', function(event){
   dealCards();
 });
+
+const card = document.querySelectorAll('div.card');
+
+for (let i = 0; i < card.length; i++) {
+  if (document.addEventListener) {
+    card[i].addEventListener('click', function() {
+    let img = card[i].getAttribute('data-image');
+    this.innerHTML = '<img src="assets/img/' + img + '">';
+    });
+  }
+};
