@@ -1,0 +1,22 @@
+html, body {
+  height: 100%; }
+
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center; }
+
+main {
+  width: 440px; }
+
+.newgame {
+  display: block; }
+
+.card {
+  background-color: #85144B;
+  display: inline-block;
+  width: 100px;
+  height: 100px;
+  margin: 10px 10px 0 0;
+  text-align: center;
+  line-height: 100px; }
