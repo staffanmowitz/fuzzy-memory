@@ -20,9 +20,9 @@ const cards = [
   'img-8'
 ];
 
-const newGame = document.querySelector('a');
+const newGame = document.querySelector('button');
 
-// The Fisher-Yates shuffle
+// Shuffle the content of the cards-array (Fisher-Yates shuffle)
 function shuffleCards (array) {
   let i = 0;
   let j = 0;
@@ -42,6 +42,7 @@ function dealCards() {
   cards.forEach(function(i) {
     let card = document.createElement('div');
     card.className = 'card';
+    card.setAttribute('data-image', i + '.png');
     card.innerHTML = i;
     document.querySelector('div.cards').appendChild(card);
   });
@@ -50,6 +51,5 @@ function dealCards() {
 dealCards();
 
 newGame.addEventListener('click', function(event){
-  event.preventDefault();
   dealCards();
 });
