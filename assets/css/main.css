@@ -8,10 +8,12 @@ html, body {
 body {
   display: flex;
   align-items: center;
-  justify-content: center; }
+  justify-content: center;
+}
 
 main {
-  width: 440px; }
+  width: 454px;
+}
 
 .newgame {
   display: block; }
@@ -23,4 +25,8 @@ main {
   margin: 10px 10px 0 0;
   text-align: center;
   line-height: 100px;
+}
+
+img {
+  vertical-align: baseline;
 }
