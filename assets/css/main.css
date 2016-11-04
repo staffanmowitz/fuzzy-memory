@@ -16,7 +16,14 @@ main {
 }
 
 .newgame {
-  display: block; }
+  display: inline-block;;
+}
+
+.score {
+  display: inline-block;
+  float: right;
+  margin-right: 10px;
+}
 
 .card {
   display: inline-block;
@@ -29,4 +36,8 @@ main {
 
 img {
   vertical-align: baseline;
+}
+
+.paired {
+  border: 2px solid black;
 }
