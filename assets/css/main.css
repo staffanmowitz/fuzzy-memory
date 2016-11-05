@@ -25,7 +25,7 @@ main {
   margin-right: 10px;
 }
 
-.card {
+.card, .dealed, .paired {
   display: inline-block;
   width: 100px;
   height: 100px;

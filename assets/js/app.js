@@ -48,7 +48,8 @@ function dealCards () {
     let dealedCard = dealedCards[i];
     dealedCard.setAttribute('src', 'assets/img/back.png');
     dealedCard.setAttribute('data-image', 'assets/img/' + cards[i][1]);
-    dealedCard.setAttribute('id', cards[i][0]);
+    // dealedCard.setAttribute('id', cards[i][0]);
+    // dealedCard.className = 'dealed';
   }
 }
 
@@ -69,15 +70,22 @@ function flipCard () {
   console.log(flippedCards);
 
   if (flipCounter === 2) {
-    if (flipCounter === 2 && flippedCards[0].getAttribute('src') === flippedCards[1].getAttribute('src')) {
+    if (flippedCards[0].getAttribute('src') === flippedCards[1].getAttribute('src')) {
       score++;
-      flippedCards[0].className += ' paired';
-      flippedCards[1].className += ' paired';
+      flippedCards[0].removeEventListener('click', flipCard, false);
+      flippedCards[1].removeEventListener('click', flipCard, false);
+      flippedCards[0].className = 'paired';
+      flippedCards[1].className = 'paired';
     } else {
+      // setTimeout(function () {
+      //   flippedCards[0].setAttribute('src', 'assets/img/back.png');
+      //   flippedCards[1].setAttribute('src', 'assets/img/back.png');
+      // }, 1000);
       flippedCards[0].setAttribute('src', 'assets/img/back.png');
       flippedCards[1].setAttribute('src', 'assets/img/back.png');
     }
     flipCounter = 0;
     flippedCards = [];
   }
+  document.querySelector('.score span').innerHTML = score;
 }
