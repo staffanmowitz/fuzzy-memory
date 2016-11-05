@@ -63,6 +63,11 @@ for (let i = 0; i < dealedCards.length; i++) {
   dealedCards[i].addEventListener('click', flipCard, false);
 }
 
+function flipBack (flippedCards) {
+  flippedCards[0].setAttribute('src', 'assets/img/back.png');
+  flippedCards[1].setAttribute('src', 'assets/img/back.png');
+}
+
 function flipCard () {
   flipCounter++;
   let cardImg = this.getAttribute('data-image');
@@ -83,8 +88,11 @@ function flipCard () {
       flippedCards[0].className = 'paired';
       flippedCards[1].className = 'paired';
     } else {
-      flippedCards[0].setAttribute('src', 'assets/img/back.png');
-      flippedCards[1].setAttribute('src', 'assets/img/back.png');
+      // setTimeout(function(null, flippedCards[0], flippedCards[1]) {
+      //   flippedCards[0].setAttribute('src', 'assets/img/back.png');
+      //   flippedCards[1].setAttribute('src', 'assets/img/back.png');
+      // }, 1000);
+      setTimeout(flipBack.bind(null, flippedCards), 1200);
     }
     flipCounter = 0;
     flippedCards = [];
