@@ -2,22 +2,22 @@
 
 // Give each card a random specific value = the picture on the front of the card
 let cards = [
-  ['card-1', 'img-1.png', false],
-  ['card-2', 'img-1.png', false],
-  ['card-3', 'img-2.png', false],
-  ['card-4', 'img-2.png', false],
-  ['card-5', 'img-3.png', false],
-  ['card-6', 'img-3.png', false],
-  ['card-7', 'img-4.png', false],
-  ['card-8', 'img-4.png', false],
-  ['card-9', 'img-5.png', false],
-  ['card-10', 'img-5.png', false],
-  ['card-11', 'img-6.png', false],
-  ['card-12', 'img-6.png', false],
-  ['card-13', 'img-7.png', false],
-  ['card-14', 'img-7.png', false],
-  ['card-15', 'img-8.png', false],
-  ['card-16', 'img-8.png', false]
+  ['card-1', 'img-1.png'],
+  ['card-2', 'img-1.png'],
+  ['card-3', 'img-2.png'],
+  ['card-4', 'img-2.png'],
+  ['card-5', 'img-3.png'],
+  ['card-6', 'img-3.png'],
+  ['card-7', 'img-4.png'],
+  ['card-8', 'img-4.png'],
+  ['card-9', 'img-5.png'],
+  ['card-10', 'img-5.png'],
+  ['card-11', 'img-6.png'],
+  ['card-12', 'img-6.png'],
+  ['card-13', 'img-7.png'],
+  ['card-14', 'img-7.png'],
+  ['card-15', 'img-8.png'],
+  ['card-16', 'img-8.png']
 ];
 
 let score = 0;
@@ -56,7 +56,7 @@ function dealCards () {
 
 dealCards();
 
-const replay = document.querySelector('button');
+const replay = document.querySelector('.replay button');
 replay.addEventListener('click', dealCards, false);
 
 for (let i = 0; i < dealedCards.length; i++) {
@@ -66,6 +66,7 @@ for (let i = 0; i < dealedCards.length; i++) {
 function flipBack (flippedCards) {
   flippedCards[0].setAttribute('src', 'assets/img/back.png');
   flippedCards[1].setAttribute('src', 'assets/img/back.png');
+  document.querySelector('.message').innerHTML = 'No match. Try again!';
 }
 
 function flipCard () {
@@ -73,7 +74,7 @@ function flipCard () {
   let cardImg = this.getAttribute('data-image');
   this.setAttribute('src', cardImg);
   flippedCards.push(this);
-  console.log(flippedCards);
+  // console.log(flippedCards);
 
   if (flipCounter === 1) {
     flippedCards[0].removeEventListener('click', flipCard, false);
@@ -87,6 +88,7 @@ function flipCard () {
       flippedCards[1].removeEventListener('click', flipCard, false);
       flippedCards[0].className = 'paired';
       flippedCards[1].className = 'paired';
+      document.querySelector('.message').innerHTML = 'You found a pair!';
     } else {
       // setTimeout(function(null, flippedCards[0], flippedCards[1]) {
       //   flippedCards[0].setAttribute('src', 'assets/img/back.png');
