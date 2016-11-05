@@ -41,6 +41,7 @@ const dealedCards = document.querySelectorAll('.card');
 
 function dealCards () {
   score = 0;
+  document.querySelector('.score span').innerHTML = score;
   flipCounter = 0;
   flippedCards = [];
   shuffleCards(cards);
@@ -49,7 +50,7 @@ function dealCards () {
     dealedCard.setAttribute('src', 'assets/img/back.png');
     dealedCard.setAttribute('data-image', 'assets/img/' + cards[i][1]);
     // dealedCard.setAttribute('id', cards[i][0]);
-    // dealedCard.className = 'dealed';
+    dealedCard.className = 'card';
   }
 }
 
@@ -69,7 +70,12 @@ function flipCard () {
   flippedCards.push(this);
   console.log(flippedCards);
 
+  if (flipCounter === 1) {
+    flippedCards[0].removeEventListener('click', flipCard, false);
+  }
+
   if (flipCounter === 2) {
+    flippedCards[0].addEventListener('click', flipCard, false);
     if (flippedCards[0].getAttribute('src') === flippedCards[1].getAttribute('src')) {
       score++;
       flippedCards[0].removeEventListener('click', flipCard, false);
@@ -77,10 +83,6 @@ function flipCard () {
       flippedCards[0].className = 'paired';
       flippedCards[1].className = 'paired';
     } else {
-      // setTimeout(function () {
-      //   flippedCards[0].setAttribute('src', 'assets/img/back.png');
-      //   flippedCards[1].setAttribute('src', 'assets/img/back.png');
-      // }, 1000);
       flippedCards[0].setAttribute('src', 'assets/img/back.png');
       flippedCards[1].setAttribute('src', 'assets/img/back.png');
     }
