@@ -59,14 +59,18 @@ dealCards();
 const replay = document.querySelector('.replay button');
 replay.addEventListener('click', dealCards, false);
 
-for (let i = 0; i < dealedCards.length; i++) {
-  dealedCards[i].addEventListener('click', flipCard, false);
+function addClickEvent () {
+  for (let i = 0; i < dealedCards.length; i++) {
+    dealedCards[i].addEventListener('click', flipCard, false);
+  }
 }
+addClickEvent();
 
 function flipBack (flippedCards) {
   flippedCards[0].setAttribute('src', 'assets/img/back.png');
   flippedCards[1].setAttribute('src', 'assets/img/back.png');
   document.querySelector('.message').innerHTML = 'No match. Try again!';
+  addClickEvent();
 }
 
 function flipCard () {
@@ -94,6 +98,10 @@ function flipCard () {
       //   flippedCards[0].setAttribute('src', 'assets/img/back.png');
       //   flippedCards[1].setAttribute('src', 'assets/img/back.png');
       // }, 1000);
+      // Remove click events from all cards to prevent cheating...
+      for (let i = 0; i < dealedCards.length; i++) {
+        dealedCards[i].removeEventListener('click', flipCard, false);
+      }
       setTimeout(flipBack.bind(null, flippedCards), 1200);
     }
     flipCounter = 0;
