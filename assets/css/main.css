@@ -12,49 +12,93 @@ body {
 }
 
 main {
-  width: 454px;
+  max-width: 90%;
 }
 
-.replay, .score {
-  width: 20%;
+h1 {
+  text-transform: uppercase;
+  font-size: 2em;
+  margin: 0 0 0.3em 0;
+  text-align: center;
 }
 
 .replay {
   float: left;
-  padding-right: 10px;
+  width: 23%;
+}
+
+.replay button {
+  /*border: 1px solid black;*/
+  padding: 0;
 }
 
 .score {
+  width: 23%;
+  line-height: 23px;
+  height: 18px;
   float: right;
-  padding-right: 10px;
   text-align: right;
+  padding: 2px 0 3px 0;
 }
 
 .message {
+  line-height: 23px;
+  height: 18px;
+  padding: 2px 1em 3px 1em;
   float: left;
-  padding: 0 10px;
-  width: 60%;
+  width: 54%;
   text-align: center;
 }
 
 .cards {
+  padding-top: 0.3em;
+  display: flex;
   clear: both;
+  justify-content: space-between;
+  flex-wrap: wrap;
 }
 
 .card, .paired {
-  display: inline-block;
-  width: 100px;
-  height: 100px;
-  margin: 10px 10px 0 0;
+  width: calc(100%/4);
+  height: 23%;
   text-align: center;
-  line-height: 100px;
-  transition: all 200ms ease;
-}
-
-img {
-  vertical-align: baseline;
+  border: 0.2em solid white;
 }
 
 .paired {
   opacity: 0.8;
+}
+
+@media screen and (min-width: 500px) {
+  main {
+    max-width: 27em;
+  }
+
+  .replay, .score {
+    width: 20%;
+  }
+
+  .replay {
+    float: left;
+    padding-right: 1em;
+  }
+
+  .score {
+    float: right;
+    text-align: right;
+  }
+
+  .message {
+    float: left;
+    padding: 0 1em;
+    width: 60%;
+    text-align: center;
+  }
+
+}
+
+@media screen and (min-width: 800px) {
+  main {
+    max-width: 30em;
+  }
 }

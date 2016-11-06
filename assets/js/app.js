@@ -69,7 +69,7 @@ addClickEvent();
 function flipBack (flippedCards) {
   flippedCards[0].setAttribute('src', 'assets/img/back.png');
   flippedCards[1].setAttribute('src', 'assets/img/back.png');
-  document.querySelector('.message').innerHTML = 'No match. Try again!';
+  document.querySelector('.message').innerHTML = 'Try again!';
   addClickEvent();
 }
 
