@@ -25,12 +25,9 @@ let flippedCards = [];
 
 // Shuffle the content of the cards-array (Fisher-Yates shuffle)
 function shuffleCards (array) {
-  let i = 0;
-  let j = 0;
-  let temp = null;
-  for (i = array.length - 1; i > 0; i -= 1) {
-    j = Math.floor(Math.random() * (i + 1));
-    temp = array[i];
+  for (let i = array.length - 1; i > 0; i -= 1) {
+    let j = Math.floor(Math.random() * (i + 1));
+    let temp = array[i];
     array[i] = array[j];
     array[j] = temp;
   }
@@ -41,8 +38,6 @@ const dealedCards = document.querySelectorAll('.card');
 function dealCards () {
   score = 0;
   document.querySelector('.score span').innerHTML = score;
-  // flipCounter = 0;
-  // flippedCards = [];
   shuffleCards(cards);
   for (let i = 0; i < dealedCards.length; i++) {
     let dealedCard = dealedCards[i];
@@ -52,10 +47,10 @@ function dealCards () {
   }
 }
 
-dealCards();
-
 const replay = document.querySelector('.replay button');
 replay.addEventListener('click', dealCards, false);
+
+dealCards();
 
 function addClickEvent () {
   for (let i = 0; i < dealedCards.length; i++) {
@@ -79,7 +74,6 @@ function flipCard () {
   let cardImg = this.getAttribute('data-image');
   this.setAttribute('src', cardImg);
   flippedCards.push(this);
-  // console.log(flippedCards);
 
   if (flipCounter === 1) {
     flippedCards[0].removeEventListener('click', flipCard, false);
@@ -98,7 +92,7 @@ function flipCard () {
       for (let i = 0; i < dealedCards.length; i++) {
         dealedCards[i].removeEventListener('click', flipCard, false);
       }
-      setTimeout(flipBack.bind(null, flippedCards), 1200);
+      setTimeout(flipBack.bind(null, flippedCards), 1000);
     }
     flipCounter = 0;
     flippedCards = [];
