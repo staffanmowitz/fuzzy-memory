@@ -1,6 +1,5 @@
 'use strict';
 
-// Give each card a random specific value = the picture on the front of the card
 let cards = [
   ['card-1', 'img-1.png'],
   ['card-2', 'img-1.png'],
@@ -42,14 +41,13 @@ const dealedCards = document.querySelectorAll('.card');
 function dealCards () {
   score = 0;
   document.querySelector('.score span').innerHTML = score;
-  flipCounter = 0;
-  flippedCards = [];
+  // flipCounter = 0;
+  // flippedCards = [];
   shuffleCards(cards);
   for (let i = 0; i < dealedCards.length; i++) {
     let dealedCard = dealedCards[i];
     dealedCard.setAttribute('src', 'assets/img/back.png');
     dealedCard.setAttribute('data-image', 'assets/img/' + cards[i][1]);
-    // dealedCard.setAttribute('id', cards[i][0]);
     dealedCard.className = 'card';
   }
 }
@@ -61,7 +59,10 @@ replay.addEventListener('click', dealCards, false);
 
 function addClickEvent () {
   for (let i = 0; i < dealedCards.length; i++) {
-    dealedCards[i].addEventListener('click', flipCard, false);
+    // Don't add click events cards that's been paired
+    if (dealedCards[i].getAttribute('class') !== 'paired') {
+      dealedCards[i].addEventListener('click', flipCard, false);
+    }
   }
 }
 addClickEvent();
@@ -94,11 +95,6 @@ function flipCard () {
       flippedCards[1].className = 'paired';
       document.querySelector('.message').innerHTML = 'You found a pair!';
     } else {
-      // setTimeout(function(null, flippedCards[0], flippedCards[1]) {
-      //   flippedCards[0].setAttribute('src', 'assets/img/back.png');
-      //   flippedCards[1].setAttribute('src', 'assets/img/back.png');
-      // }, 1000);
-      // Remove click events from all cards to prevent cheating...
       for (let i = 0; i < dealedCards.length; i++) {
         dealedCards[i].removeEventListener('click', flipCard, false);
       }
@@ -106,6 +102,6 @@ function flipCard () {
     }
     flipCounter = 0;
     flippedCards = [];
+    document.querySelector('.score span').innerHTML = score;
   }
-  document.querySelector('.score span').innerHTML = score;
 }
