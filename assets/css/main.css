@@ -27,11 +27,6 @@ h1 {
   width: 23%;
 }
 
-.replay button {
-  /*border: 1px solid black;*/
-  padding: 0;
-}
-
 .score {
   width: 23%;
   line-height: 23px;
@@ -94,7 +89,6 @@ h1 {
     width: 60%;
     text-align: center;
   }
-
 }
 
 @media screen and (min-width: 800px) {
