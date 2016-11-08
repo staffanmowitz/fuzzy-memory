@@ -23,6 +23,11 @@ let score = 0;
 let flipCounter = 0;
 let flippedCards = [];
 
+const replay = document.querySelector('.replay button');
+replay.addEventListener('click', dealCards, false);
+
+const dealedCards = document.querySelectorAll('.card');
+
 // Shuffle the content of the cards-array (Fisher-Yates shuffle)
 function shuffleCards (array) {
   for (let i = array.length - 1; i > 0; i -= 1) {
@@ -32,8 +37,6 @@ function shuffleCards (array) {
     array[j] = temp;
   }
 }
-
-const dealedCards = document.querySelectorAll('.card');
 
 function dealCards () {
   score = 0;
@@ -45,10 +48,8 @@ function dealCards () {
     dealedCard.setAttribute('data-image', 'assets/img/' + cards[i][1]);
     dealedCard.className = 'card';
   }
+  addClickEvent();
 }
-
-const replay = document.querySelector('.replay button');
-replay.addEventListener('click', dealCards, false);
 
 dealCards();
 
@@ -60,7 +61,6 @@ function addClickEvent () {
     }
   }
 }
-addClickEvent();
 
 function flipBack (flippedCards) {
   flippedCards[0].setAttribute('src', 'assets/img/back.png');
