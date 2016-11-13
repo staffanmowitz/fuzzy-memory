@@ -82,11 +82,11 @@ function dealCards (level) {
   }
   shuffleCards(tempCards);
   // Deal the shuffled cards
-  for (let i = 0; i < tempCards.length; i++) {
+  for (let k = 0; k < tempCards.length; k++) {
     let card = document.createElement('img');
     card.className = 'card';
     card.setAttribute('src', 'assets/img/back.png');
-    card.setAttribute('data-image', 'assets/img/' + tempCards[i][1]);
+    card.setAttribute('data-image', 'assets/img/' + tempCards[k][1]);
     document.querySelector('div.cards').appendChild(card);
   }
   // Add click event to the dealed cards
