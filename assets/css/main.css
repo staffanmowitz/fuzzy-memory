@@ -6,9 +6,12 @@ html, body {
   height: 100%; }
 
 body {
+  font-family: 'Helvetica Neue';
   display: flex;
   align-items: center;
   justify-content: center;
+  background-color: white;
+  font-weight: lighter;
 }
 
 main {
@@ -16,15 +19,9 @@ main {
 }
 
 h1 {
-  text-transform: uppercase;
-  font-size: 2em;
+  font-weight: 100;
+  font-size: 1.75em;
   margin: 0 0 0.3em 0;
-  text-align: center;
-}
-
-.replay {
-  float: left;
-  width: 23%;
 }
 
 .score {
@@ -33,16 +30,16 @@ h1 {
   height: 18px;
   float: right;
   text-align: right;
-  padding: 2px 0 3px 0;
+  padding: 2px 2px 3px 0;
 }
 
 .message {
   line-height: 23px;
   height: 18px;
-  padding: 2px 1em 3px 1em;
+  padding: 2px 1em 3px 2px;
   float: left;
-  width: 54%;
-  text-align: center;
+  width: 77%;
+  text-align: left;
 }
 
 .cards {
@@ -60,8 +57,24 @@ h1 {
   border: 0.2em solid white;
 }
 
+.cards.hard > .card, .cards.hard > .paired {
+  width: calc(100%/6);
+}
+
 .paired {
   opacity: 0.8;
+  transition: opacity 0.8s;
+}
+
+.replay {
+  margin-top: 10px;
+  float: left;
+  width: 50%;
+  padding: 0 2px;
+}
+
+.replay button {
+  width: 100%;
 }
 
 @media screen and (min-width: 500px) {
@@ -69,25 +82,8 @@ h1 {
     max-width: 27em;
   }
 
-  .replay, .score {
-    width: 20%;
-  }
-
-  .replay {
-    float: left;
-    padding-right: 1em;
-  }
-
-  .score {
-    float: right;
-    text-align: right;
-  }
-
-  .message {
-    float: left;
-    padding: 0 1em;
-    width: 60%;
-    text-align: center;
+  h1 {
+    font-size: 3em;
   }
 }
 

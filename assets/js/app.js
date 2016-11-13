@@ -1,6 +1,6 @@
 'use strict';
 
-let cards = [
+const cards = [
   ['card-1', 'img-1.png'],
   ['card-2', 'img-1.png'],
   ['card-3', 'img-2.png'],
@@ -42,10 +42,20 @@ let cards = [
 let score = 0;
 let flipCounter = 0;
 let flippedCards = [];
+let tempCards;
 let dealedCards;
 
-const replay = document.querySelector('.replay button');
-replay.addEventListener('click', dealCards, false);
+const replayEasy = document.querySelector('.easy button');
+// replayEasy.addEventListener('click', dealCards('easy'), false);
+replayEasy.addEventListener('click', function (event) {
+  dealCards('easy');
+}, false);
+
+const replayHard = document.querySelector('.hard button');
+// replayHard.addEventListener('click', dealCards('hard'), false);
+replayHard.addEventListener('click', function (event) {
+  dealCards('hard');
+}, false);
 
 // Shuffle the content of the cards-array (Fisher-Yates shuffle)
 function shuffleCards (array) {
@@ -57,23 +67,32 @@ function shuffleCards (array) {
   }
 }
 
-function dealCards () {
+function dealCards (level) {
+  tempCards = cards.slice();
   score = 0;
   document.querySelector('.score span').innerHTML = score;
-  shuffleCards(cards);
   document.querySelector('div.cards').innerHTML = '';
-  for (let i = 0; i < cards.length; i++) {
+  if (level === 'easy') {
+    document.querySelector('div.cards').className = 'cards';
+    for (var i = 0; i < 20; i++) {
+      tempCards.pop();
+    }
+  } else {
+    document.querySelector('div.cards').className = 'cards hard';
+  }
+  shuffleCards(tempCards);
+  for (let i = 0; i < tempCards.length; i++) {
     let card = document.createElement('img');
     card.className = 'card';
     card.setAttribute('src', 'assets/img/back.png');
-    card.setAttribute('data-image', 'assets/img/' + cards[i][1]);
+    card.setAttribute('data-image', 'assets/img/' + tempCards[i][1]);
     document.querySelector('div.cards').appendChild(card);
   }
   dealedCards = document.querySelectorAll('.card');
   addClickEvent();
 }
 
-dealCards();
+dealCards('easy');
 
 function addClickEvent () {
   for (let i = 0; i < dealedCards.length; i++) {
