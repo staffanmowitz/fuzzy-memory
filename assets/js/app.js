@@ -16,7 +16,27 @@ let cards = [
   ['card-13', 'img-7.png'],
   ['card-14', 'img-7.png'],
   ['card-15', 'img-8.png'],
-  ['card-16', 'img-8.png']
+  ['card-16', 'img-8.png'],
+  ['card-17', 'img-9.png'],
+  ['card-18', 'img-9.png'],
+  ['card-19', 'img-10.png'],
+  ['card-20', 'img-10.png'],
+  ['card-21', 'img-11.png'],
+  ['card-22', 'img-11.png'],
+  ['card-23', 'img-12.png'],
+  ['card-24', 'img-12.png'],
+  ['card-25', 'img-13.png'],
+  ['card-26', 'img-13.png'],
+  ['card-27', 'img-14.png'],
+  ['card-28', 'img-14.png'],
+  ['card-29', 'img-15.png'],
+  ['card-30', 'img-15.png'],
+  ['card-31', 'img-16.png'],
+  ['card-32', 'img-16.png'],
+  ['card-33', 'img-17.png'],
+  ['card-34', 'img-17.png'],
+  ['card-35', 'img-18.png'],
+  ['card-36', 'img-18.png']
 ];
 
 let score = 0;
@@ -71,6 +91,13 @@ function flipBack (flippedCards) {
   addClickEvent();
 }
 
+function gameOver () {
+  let pairedCards = document.querySelectorAll('.paired');
+  if (pairedCards.length === dealedCards.length) {
+    document.querySelector('.message').innerHTML = 'You won!';
+  }
+}
+
 function flipCard () {
   flipCounter++;
   let cardImg = this.getAttribute('data-image');
@@ -96,8 +123,10 @@ function flipCard () {
       }
       setTimeout(flipBack.bind(null, flippedCards), 1000);
     }
+
     flipCounter = 0;
     flippedCards = [];
     document.querySelector('.score span').innerHTML = score;
+    gameOver();
   }
 }
