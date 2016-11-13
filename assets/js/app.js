@@ -46,13 +46,11 @@ let tempCards;
 let dealedCards;
 
 const replayEasy = document.querySelector('.easy button');
-// replayEasy.addEventListener('click', dealCards('easy'), false);
 replayEasy.addEventListener('click', function (event) {
   dealCards('easy');
 }, false);
 
 const replayHard = document.querySelector('.hard button');
-// replayHard.addEventListener('click', dealCards('hard'), false);
 replayHard.addEventListener('click', function (event) {
   dealCards('hard');
 }, false);
@@ -68,11 +66,13 @@ function shuffleCards (array) {
 }
 
 function dealCards (level) {
-  tempCards = cards.slice();
+  // Reset score and clear old cards for each new game
   score = 0;
   document.querySelector('.score span').innerHTML = score;
   document.querySelector('div.cards').innerHTML = '';
+  tempCards = cards.slice();
   if (level === 'easy') {
+    // Only play with the first 16 cards if the difficulty is set to 'easy'
     document.querySelector('div.cards').className = 'cards';
     for (var i = 0; i < 20; i++) {
       tempCards.pop();
@@ -81,6 +81,7 @@ function dealCards (level) {
     document.querySelector('div.cards').className = 'cards hard';
   }
   shuffleCards(tempCards);
+  // Deal the shuffled cards
   for (let i = 0; i < tempCards.length; i++) {
     let card = document.createElement('img');
     card.className = 'card';
@@ -88,10 +89,12 @@ function dealCards (level) {
     card.setAttribute('data-image', 'assets/img/' + tempCards[i][1]);
     document.querySelector('div.cards').appendChild(card);
   }
+  // Add click event to the dealed cards
   dealedCards = document.querySelectorAll('.card');
   addClickEvent();
 }
 
+// Automatically start easy game on page load
 dealCards('easy');
 
 function addClickEvent () {
@@ -107,10 +110,12 @@ function flipBack (flippedCards) {
   flippedCards[0].setAttribute('src', 'assets/img/back.png');
   flippedCards[1].setAttribute('src', 'assets/img/back.png');
   document.querySelector('.message').innerHTML = 'Try again!';
+  // Add back click events to all cards
   addClickEvent();
 }
 
 function gameOver () {
+  // Print message if all cards have been paired
   let pairedCards = document.querySelectorAll('.paired');
   if (pairedCards.length === dealedCards.length) {
     document.querySelector('.message').innerHTML = 'You won!';
@@ -121,15 +126,19 @@ function flipCard () {
   flipCounter++;
   let cardImg = this.getAttribute('data-image');
   this.setAttribute('src', cardImg);
+  // Add clicked cards to flippedCards-array
   flippedCards.push(this);
 
   if (flipCounter === 1) {
+    // Remove click event from first clicked card to prevent user form clicking it again
     flippedCards[0].removeEventListener('click', flipCard, false);
   }
 
   if (flipCounter === 2) {
+    // Prepare for next round by adding back click event to first clicked card
     flippedCards[0].addEventListener('click', flipCard, false);
     if (flippedCards[0].getAttribute('src') === flippedCards[1].getAttribute('src')) {
+    // If user found a pair - add one point to the score, add class 'paired' to the cards, remove click event and print message
       score++;
       flippedCards[0].removeEventListener('click', flipCard, false);
       flippedCards[1].removeEventListener('click', flipCard, false);
@@ -137,12 +146,15 @@ function flipCard () {
       flippedCards[1].className = 'paired';
       document.querySelector('.message').innerHTML = 'You found a pair!';
     } else {
+    // If user didn't found a pair - let them look at the flipped cards for one second and then flip them back.
+    // Remove click event from all cards during this time to prevent user from sneak peeking...
       for (let i = 0; i < dealedCards.length; i++) {
         dealedCards[i].removeEventListener('click', flipCard, false);
       }
       setTimeout(flipBack.bind(null, flippedCards), 1000);
     }
 
+    // After each round: reset flipCounter and flippedCards array, print score and check if all cards have been paired
     flipCounter = 0;
     flippedCards = [];
     document.querySelector('.score span').innerHTML = score;
